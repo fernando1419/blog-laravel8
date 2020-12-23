@@ -43,12 +43,19 @@ class PostController extends Controller
    /**
     * Display the specified resource.
     *
-    * @param  int  $id
+    * @param  object  $post
     * @return \Illuminate\Http\Response
     */
-   public function show($id)
+   public function show(Post $post)
    {
-      //
+      $similarPosts = Post::where('category_id', $post->category_id)
+            ->where('status', 2)
+            ->where('id', '!=', $post->id)
+            ->latest('id')
+            ->take(4)
+            ->get();
+
+      return view('posts.show', compact('post', 'similarPosts'));
    }
 
    /**
