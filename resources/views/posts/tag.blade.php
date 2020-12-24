@@ -1,6 +1,6 @@
 <x-app-layout>
    <div class="py-8 max-w-5xl mx-auto px-2 sm:px-6 lg:px-8">
-      <h1 class="uppercase text-center text-3xl font-bold">Category: {{ $category->name }} </h1>
+      <h1 class="uppercase text-center text-3xl font-bold">Tag: {{ $tag->name }} </h1>
 
       @foreach ($posts as $post)
          <x-card-post :post="$post"></x-card-post>
