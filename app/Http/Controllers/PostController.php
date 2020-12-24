@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -49,13 +50,23 @@ class PostController extends Controller
    public function show(Post $post)
    {
       $similarPosts = Post::where('category_id', $post->category_id)
-            ->where('status', 2)
-            ->where('id', '!=', $post->id)
-            ->latest('id')
-            ->take(4)
-            ->get();
+     ->where('status', 2)
+     ->where('id', '!=', $post->id)
+     ->latest('id')
+     ->take(4)
+     ->get();
 
       return view('posts.show', compact('post', 'similarPosts'));
+   }
+
+   public function Category(Category $category)
+   {
+      $posts = Post::where('category_id', $category->id)
+            ->where('status', 2)
+            ->latest('id')
+            ->paginate(6);
+
+      return view('posts.category', compact('posts', 'category'));
    }
 
    /**
