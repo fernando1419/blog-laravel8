@@ -236,16 +236,17 @@ return [
    [
    'text'        => 'Dashboard',
    // 'url'         => 'admin/pages',
-   'route'       => 'dashboard',
+   'route'       => 'admin.home',
    'icon'        => 'fas fa-tachometer-alt fa-fw',
    // 'label'       => 4,
    // 'label_color' => 'success',
    ],
-   ['header' => 'account_settings'],
+   ['header' => 'ADMINISTRATOR'],
    [
-   'text' => 'profile',
-   'url'  => 'admin/settings',
-   'icon' => 'fas fa-fw fa-user',
+   'text' => 'Categories',
+   // 'url'  => 'admin/settings',
+   'route' => 'admin.categories.index',
+   'icon'  => 'fab fa-fw fa-buffer',
    ],
    [
    'text' => 'change_password',
@@ -264,24 +265,24 @@ return [
    'text'    => 'level_one',
    'url'     => '#',
    'submenu' => [
-    [
-    'text' => 'level_two',
-    'url'  => '#',
-    ],
-    [
-    'text'    => 'level_two',
-    'url'     => '#',
-    'submenu' => [
-     [
-     'text' => 'level_three',
-     'url'  => '#',
-     ],
-     [
-     'text' => 'level_three',
-     'url'  => '#',
-     ],
-    ],
-    ],
+   [
+   'text' => 'level_two',
+   'url'  => '#',
+   ],
+   [
+   'text'    => 'level_two',
+   'url'     => '#',
+   'submenu' => [
+   [
+   'text' => 'level_three',
+   'url'  => '#',
+   ],
+   [
+   'text' => 'level_three',
+   'url'  => '#',
+   ],
+   ],
+   ],
    ],
    ],
    [
