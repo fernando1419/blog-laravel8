@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-   <h1>Create Category</h1>
+   <h1>Create Tag</h1>
 @stop
 
 @section('content')
@@ -12,9 +12,9 @@
 
       <div class="card-body">
 
-         {!! Form::open(['route' => 'admin.categories.store']) !!}
+         {!! Form::open(['route' => 'admin.tags.store']) !!}
 
-            @include('admin.categories._form', ['submitButtonText' => 'Create Category'])
+            @include('admin.tags._form', ['submitButtonText' => 'Create Tag'])
 
          {!! Form::close() !!}
 

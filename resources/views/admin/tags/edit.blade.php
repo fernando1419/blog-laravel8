@@ -3,24 +3,27 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-   <h1>Create Category</h1>
+   <h1>Edit Tag</h1>
 @stop
 
 @section('content')
 
    <div class="card">
 
+      @include('admin.shared._session_message')
+
       <div class="card-body">
 
-         {!! Form::open(['route' => 'admin.categories.store']) !!}
+         {!! Form::model($tag, ['route' => ['admin.tags.update', $tag], 'method' => 'PUT']) !!}
 
-            @include('admin.categories._form', ['submitButtonText' => 'Create Category'])
+            @include('admin.tags._form', ['submitButtonText' => 'Update Tag'])
 
          {!! Form::close() !!}
 
       </div>
 
    </div>
+
 @stop
 
 @include('admin.shared._slug_creator')

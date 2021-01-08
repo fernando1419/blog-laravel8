@@ -39,9 +39,9 @@ class CategoryController extends Controller
    public function store(Request $request)
    {
       $category = Category::create($request->validate([
-   'name' => 'required',
-   'slug' => 'required|unique:categories'
-   ]));
+         'name' => 'required',
+         'slug' => 'required|unique:categories'
+       ]));
 
       return redirect()->route('admin.categories.edit', $category)->with('info', 'Category created successfully!');
    }
@@ -78,9 +78,9 @@ class CategoryController extends Controller
    public function update(Request $request, Category $category)
    {
       $category->update($request->validate([
-    'name' => 'required',
-    'slug' => "required|unique:categories,slug,$category->id"
-   ]));
+       'name' => 'required',
+       'slug' => "required|unique:categories,slug,$category->id"
+      ]));
 
       return redirect()->route('admin.categories.edit', $category)->with('info', 'Category updated successfully!');
    }

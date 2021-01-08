@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
 
-      @include('admin.categories._session_message')
+      @include('admin.shared._session_message')
 
       <div class="card-body">
 
@@ -24,4 +24,5 @@
    </div>
 @stop
 
-@include('admin.categories._slug_creator')
+@include('admin.shared._slug_creator')
+
