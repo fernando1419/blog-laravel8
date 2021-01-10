@@ -15,7 +15,7 @@ class PostSeeder extends Seeder
     */
    public function run()
    {
-      $posts = Post::factory(100)->create();
+      $posts = Post::factory(150)->create();
 
       foreach ($posts as $post) {
          // creates an image for each post
@@ -25,9 +25,9 @@ class PostSeeder extends Seeder
        ]);
          // creates 2 random tags for each post
          $post->tags()->attach([
-         rand(1, 5),
-         rand(6, 10)
-       ]);
+     rand(1, 5),
+     rand(6, 10)
+    ]);
       }
    }
 }
