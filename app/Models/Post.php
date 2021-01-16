@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+   protected $guarded = ['id', 'created_at', 'updated_at'];
+
    use HasFactory;
 
    public function user()
@@ -21,7 +23,7 @@ class Post extends Model
 
    public function tags()
    {
-      return $this->belongsToMany(Tag::class);
+      return $this->belongsToMany(Tag::class)->withTimestamps();
    }
 
    public function image()

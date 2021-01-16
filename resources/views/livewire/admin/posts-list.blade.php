@@ -37,8 +37,7 @@
       </div>
 
       <div>
-         {{-- {{ $posts->links() }} --}}
-         {{ $posts->links() }}
+         {{ $posts->links() }} {{-- these links don't work!!!!! --}}
       </div>
    @else
       <div class="card-body text-center">

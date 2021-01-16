@@ -23,4 +23,6 @@
    </div>
 @stop
 
-@include('admin.shared._slug_creator')
+@section('js')
+   @include('admin.shared._slug_creator')
+@endsection
