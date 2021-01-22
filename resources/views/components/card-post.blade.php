@@ -1,14 +1,18 @@
 @props(['post'])
 
 <article class="mb-8 bg-white shadow-lg rounded-lg overflow-hidden">
-   <img src="{{ Storage::url($post->image->url) }} " class="w-full h-72 object-cover object-center" alt="{{ $post->image->url }}">
+   <img class="w-full h-72 object-cover object-center" src="@if ($post->image)
+      {{ Storage::url($post->image->url) }}
+   @else
+      https://via.placeholder.com/300x200?text=No+Image+Uploaded+Yet+...
+   @endif">
 
    <div class="px-6 py-4">
       <h1 class="font-bold text-xl mb-2">
          <a href="{{ route('posts.show', $post) }}"> {{ $post->name }} </a>
       </h1>
       <div class="text-gray-700 text-base">
-         {{ $post->extract }}
+         {!! $post->extract !!}
       </div>
    </div>
 
