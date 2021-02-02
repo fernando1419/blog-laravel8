@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -43,6 +44,14 @@ class PostController extends Controller
    public function store(StorePostRequest $request)
    {
       $post = Post::create($request->all());
+
+      if ($request->file('file')) { // image exists in the request
+         $url = Storage::put('posts', $request->file('file')); // moves from temp location to public/storage/posts
+
+         $post->image()->create([
+            'url' => $url
+         ]);
+      }
 
       if ($request->tags) {
          $post->tags()->attach($request->tags);

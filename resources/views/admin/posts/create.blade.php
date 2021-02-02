@@ -11,7 +11,7 @@
 
       <div class="card-body">
 
-         {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off']) !!}
+         {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
             {{-- @include('admin.categories._form', ['submitButtonText' => 'Create Category']) --}}
             {!! Form::hidden('user_id', auth()->user()->id) !!}
@@ -71,6 +71,25 @@
                @enderror
             </div>
 
+            <div class="row mb-3">
+               <div class="col">
+                  <div class="image-wrapper">
+                     <img id="post-image" src="https://via.placeholder.com/300x200?text=No+Image+Uploaded+Yet+..." class="img-fluid">
+                  </div>
+               </div>
+               <div class="col">
+                  <div class="form-group">
+                    <label for="file">Post image:</label>
+                    <input type="file" accept="image/*" name="file" id="file" class="form-control-file" placeholder="file" aria-describedby="helpId">
+                    <small id="helpId" class="text-muted">Only image file types are supported (bmp, png, jpg, etc.)</small>
+                    @error('file')
+                       <span class="text-sm text-danger"> {{ $errors->first('file') }} </span>
+                    @enderror
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus debitis quam neque perspiciatis nisi laboriosam, consectetur reiciendis est doloribus, pariatur id mollitia, autem deleniti similique voluptatibus fugiat? Quisquam, nulla cumque?</p>
+               </div>
+            </div>
+
             <div class="form-group">
                {!! Form::label('extract', 'Extract:') !!}
                {!! Form::textarea('extract', null, ['class' => 'form-control form-control-sm', 'rows' => 5]) !!}
@@ -100,21 +119,48 @@
    </div>
 @stop
 
+@section('css')
+   <style>
+      .image-wrapper {
+         position: relative;
+         padding-bottom: 56.25%
+      }
+
+      .image-wrapper img {
+         position: absolute;
+         object-fit: cover;
+         width: 100%;
+         height: 100%;
+      }
+   </style>
+@endsection
+
 @section('js')
    @include('admin.shared._slug_creator')
 
    <script src="https://cdn.ckeditor.com/ckeditor5/24.0.0/classic/ckeditor.js"></script>
    <script>
-       ClassicEditor
+      ClassicEditor
          .create( document.querySelector( '#extract' ) )
          .catch( error => {
             console.error( error );
-        });
-       ClassicEditor
+         });
+      ClassicEditor
          .create( document.querySelector( '#body' ) )
          .catch( error => {
             console.error( error );
          });
+
+      document.getElementById("file").addEventListener('change', changeImage);
+
+      function changeImage(event){
+         var file = event.target.files[0];
+         var reader = new FileReader();
+         reader.onload = (event) => {
+            document.getElementById("post-image").setAttribute('src', event.target.result);
+         };
+         reader.readAsDataURL(file);
+      }
    </script>
 
 @endsection
