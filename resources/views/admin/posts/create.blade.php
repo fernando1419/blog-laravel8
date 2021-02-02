@@ -16,8 +16,6 @@
 
          {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
-            {!! Form::hidden('user_id', auth()->user()->id) !!}
-
             @include('admin.posts._form', ['submitButtonText' => 'Create Post'])
 
          {!! Form::close() !!}

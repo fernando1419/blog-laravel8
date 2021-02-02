@@ -9,5 +9,9 @@
 @stop
 
 @section('content')
+
+   @include('admin.shared._session_message')
+
    @livewire('admin.posts-list')
+
 @stop
