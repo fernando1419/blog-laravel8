@@ -50,6 +50,8 @@ class PostController extends Controller
     */
    public function show(Post $post)
    {
+      $this->authorize('published', $post);
+
       $similarPosts = Post::where('category_id', $post->category_id)
    ->where('status', 2)
    ->where('id', '!=', $post->id)
@@ -69,9 +71,9 @@ class PostController extends Controller
    public function category(Category $category)
    {
       $posts = Post::where('category_id', $category->id)
-     ->where('status', 2)
-     ->latest('id')
-     ->paginate(6);
+    ->where('status', 2)
+    ->latest('id')
+    ->paginate(6);
 
       return view('posts.category', compact('posts', 'category'));
    }
