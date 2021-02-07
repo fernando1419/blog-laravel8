@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
       Storage::deleteDirectory('posts'); // this is for erasing existing images.
       Storage::makeDirectory('posts');
 
+      $this->call(RoleSeeder::class);
+
       $this->call(UserSeeder::class);
       \App\Models\Category::factory(5)->create();
       \App\Models\Tag::factory(10)->create();
