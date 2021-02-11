@@ -22,9 +22,9 @@ class PostsList extends Component
    public function render()
    {
       $posts = Post::where('user_id', auth()->user()->id)
-                  ->where('name', 'LIKE', '%' . $this->search . '%')
-                  ->latest('id')
-                  ->paginate();
+              ->where('name', 'LIKE', '%' . $this->search . '%')
+              ->latest('id')
+              ->paginate(10);
 
       return view('livewire.admin.posts-list', compact('posts'));
    }
