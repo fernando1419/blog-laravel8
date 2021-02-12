@@ -3,6 +3,9 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+   @can('admin.categories.create')
+      <a href="{{ route('admin.categories.create') }}" class="btn btn-info btn-sm float-right">Add Category</a>
+   @endcan
    <h2>List of Categories</h2>
 @stop
 
@@ -10,11 +13,6 @@
    <div class="card">
 
       @include('admin.shared._session_message')
-
-      <div class="card-header">
-         <a href="{{ route('admin.categories.create') }}" class="btn btn-secondary btn-sm float-right">Add Category</a>
-      </div>
-
       <div class="card-body">
          <table class="table table-striped table-condensed">
             <thead>
@@ -30,14 +28,18 @@
                      <td> {{ $category->id }} </td>
                      <td> {{ $category->name }} </td>
                      <td width="10px">
-                        <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Edit</a>
+                        @can('admin.categories.edit')
+                           <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-primary btn-sm">Edit</a>
+                        @endcan
                      </td>
                      <td width="10px">
-                        <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
-                           @csrf
-                           @method('DELETE')
-                           <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
+                        @can('admin.categories.destroy')
+                           <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                           </form>
+                        @endcan
                      </td>
                   </tr>
                @endforeach

@@ -238,6 +238,7 @@ return [
    // 'url'         => 'admin/pages',
    'route'       => 'admin.home',
    'icon'        => 'fas fa-tachometer-alt fa-fw',
+   'can'         => 'admin.home'
    // 'label'       => 4,
    // 'label_color' => 'success',
    ],
@@ -245,34 +246,40 @@ return [
    'text'        => 'Users',
    'route'       => 'admin.users.index',
    'icon'        => 'fas fa-user fa-fw',
+   'can'         => 'admin.users.index'
+
    // 'label'       => 4,
    // 'label_color' => 'success',
    ],
-   ['header' => 'ADMINISTRATOR'],
+
    [
    'text'      => 'Categories',
    // 'url'  => 'admin/settings',
    'route'      => 'admin.categories.index',
    'icon'       => 'fab fa-fw fa-buffer',
-   'active'     => ['admin/categories*']
+   'active'     => ['admin/categories*'],
+   'can'        => 'admin.categories.index'
    ],
    [
    'text'      => 'Tags',
    'route'     => 'admin.tags.index',
    'icon'      => 'far fa-fw fa-bookmark',
-   'active'    => ['admin/tags*']
+   'active'    => ['admin/tags*'],
+   'can'       => 'admin.tags.index'
    ],
    ['header' => 'BLOG OPTIONS'],
    [
    'text'  => 'Posts Lists',
    'route' => 'admin.posts.index',
-   'icon'  => 'fas fa-fw fa-clipboard'
+   'icon'  => 'fas fa-fw fa-clipboard',
+   'can'   => 'admin.posts.index'
 ],
 [
    'text'         => 'Create a Post',
    'icon_color'   => 'yellow',
    'route'        => 'admin.posts.create',
-   'icon'         => 'fas fa-fw fa-file'
+   'icon'         => 'fas fa-fw fa-file',
+   'can'          => 'admin.posts.create'
    ],
    ],
 

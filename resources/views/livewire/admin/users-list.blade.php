@@ -24,13 +24,13 @@
                      <td width="10px">
                         <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-primary btn-sm">Edit</a>
                      </td>
-                     <td width="10px">
+                     {{-- <td width="10px">
                         <form action="{{ route('admin.users.destroy', $user) }}" method="POST">
                            @csrf
                            @method('DELETE')
                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                         </form>
-                     </td>
+                     </td> --}}
                   </tr>
                @endforeach
             </tbody>
