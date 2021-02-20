@@ -8,6 +8,14 @@ use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
+   public function __construct()
+   {
+      $this->middleware('can:admin.tags.index')->only('index');
+      $this->middleware('can:admin.tags.create')->only('create', 'store');
+      $this->middleware('can:admin.tags.edit')->only('edit', 'update');
+      $this->middleware('can:admin.tags.destroy')->only('destroy');
+   }
+
    /**
     * Display a listing of the resource.
     *
@@ -50,17 +58,6 @@ class TagController extends Controller
    }
 
    /**
-    * Display the specified resource.
-    *
-    * @param  object $tag
-    * @return \Illuminate\Http\Response
-    */
-   public function show(Tag $tag)
-   {
-      return view('admin.tags.show', compact('tag'));
-   }
-
-   /**
     * Show the form for editing the specified resource.
     *
     * @param  object $tag
@@ -83,9 +80,9 @@ class TagController extends Controller
    public function update(Request $request, Tag $tag)
    {
       $tag->update($request->validate([
-     'name' => 'required',
-     'slug' => "required|unique:tags,slug,$tag->id"
-    ]));
+   'name' => 'required',
+   'slug' => "required|unique:tags,slug,$tag->id"
+   ]));
 
       return redirect()->route('admin.tags.edit', $tag)->with('info', 'Tag updated successfully!');
    }

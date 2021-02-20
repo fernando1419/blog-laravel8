@@ -8,6 +8,14 @@ use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
+   public function __construct()
+   {
+      $this->middleware('can:admin.categories.index')->only('index');
+      $this->middleware('can:admin.categories.create')->only('create', 'store');
+      $this->middleware('can:admin.categories.edit')->only('edit', 'update');
+      $this->middleware('can:admin.categories.destroy')->only('destroy');
+   }
+
    /**
     * Display a listing of the resource.
     *
@@ -39,22 +47,11 @@ class CategoryController extends Controller
    public function store(Request $request)
    {
       $category = Category::create($request->validate([
-         'name' => 'required',
-         'slug' => 'required|unique:categories'
-       ]));
+    'name' => 'required',
+    'slug' => 'required|unique:categories'
+   ]));
 
       return redirect()->route('admin.categories.edit', $category)->with('info', 'Category created successfully!');
-   }
-
-   /**
-    * Display the specified resource.
-    *
-    * @param  object  $category
-    * @return \Illuminate\Http\Response
-    */
-   public function show(Category $category)
-   {
-      return view('admin.categories.show', compact('category'));
    }
 
    /**
@@ -78,9 +75,9 @@ class CategoryController extends Controller
    public function update(Request $request, Category $category)
    {
       $category->update($request->validate([
-       'name' => 'required',
-       'slug' => "required|unique:categories,slug,$category->id"
-      ]));
+   'name' => 'required',
+   'slug' => "required|unique:categories,slug,$category->id"
+   ]));
 
       return redirect()->route('admin.categories.edit', $category)->with('info', 'Category updated successfully!');
    }
