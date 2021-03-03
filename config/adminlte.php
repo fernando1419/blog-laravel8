@@ -223,64 +223,71 @@ return [
    */
 
    'menu' => [
-   [
-   'text'   => 'search',
-   'search' => true,
-   'topnav' => true,
-   ],
-   [
-   'text' => 'blog',
-   'url'  => 'admin/blog',
-   'can'  => 'manage-blog',
-   ],
-   [
-   'text'        => 'Dashboard',
-   // 'url'         => 'admin/pages',
-   'route'       => 'admin.home',
-   'icon'        => 'fas fa-tachometer-alt fa-fw',
-   'can'         => 'admin.home'
-   // 'label'       => 4,
-   // 'label_color' => 'success',
-   ],
-   [
-   'text'        => 'Users',
-   'route'       => 'admin.users.index',
-   'icon'        => 'fas fa-user fa-fw',
-   'can'         => 'admin.users.index'
+      [
+         'text'   => 'search',
+         'search' => true,
+         'topnav' => true,
+      ],
+      [
+         'text' => 'blog',
+         'url'  => 'admin/blog',
+         'can'  => 'manage-blog',
+      ],
+      [
+         'text'        => 'Dashboard',
+         // 'url'         => 'admin/pages',
+         'route'       => 'admin.home',
+         'icon'        => 'fas fa-tachometer-alt fa-fw',
+         'can'         => 'admin.home'
+         // 'label'       => 4,
+         // 'label_color' => 'success',
+      ],
+      [
+         'text'        => 'Users',
+         'route'       => 'admin.users.index',
+         'icon'        => 'fas fa-user fa-fw',
+         'can'         => 'admin.users.index'
+         // 'label'       => 4,
+         // 'label_color' => 'success',
+      ],
+      [
+         'text'        => 'List of Roles',
+         'route'       => 'admin.roles.index',
+         'icon'        => 'fas fa-user-cog fa-fw',
+         // 'can'         => 'admin.roles.index'
+         // 'label'       => 4,
+         // 'label_color' => 'success',
+      ],
 
-   // 'label'       => 4,
-   // 'label_color' => 'success',
-   ],
-
-   [
-   'text'      => 'Categories',
-   // 'url'  => 'admin/settings',
-   'route'      => 'admin.categories.index',
-   'icon'       => 'fab fa-fw fa-buffer',
-   'active'     => ['admin/categories*'],
-   'can'        => 'admin.categories.index'
-   ],
-   [
-   'text'      => 'Tags',
-   'route'     => 'admin.tags.index',
-   'icon'      => 'far fa-fw fa-bookmark',
-   'active'    => ['admin/tags*'],
-   'can'       => 'admin.tags.index'
-   ],
-   ['header' => 'BLOG OPTIONS'],
-   [
-   'text'  => 'Posts Lists',
-   'route' => 'admin.posts.index',
-   'icon'  => 'fas fa-fw fa-clipboard',
-   'can'   => 'admin.posts.index'
-],
-[
-   'text'         => 'Create a Post',
-   'icon_color'   => 'yellow',
-   'route'        => 'admin.posts.create',
-   'icon'         => 'fas fa-fw fa-file',
-   'can'          => 'admin.posts.create'
-   ],
+      [
+         'text'      => 'Categories',
+         // 'url'  => 'admin/settings',
+         'route'      => 'admin.categories.index',
+         'icon'       => 'fab fa-fw fa-buffer',
+         'active'     => ['admin/categories*'],
+         'can'        => 'admin.categories.index'
+      ],
+      [
+         'text'      => 'Tags',
+         'route'     => 'admin.tags.index',
+         'icon'      => 'far fa-fw fa-bookmark',
+         'active'    => ['admin/tags*'],
+         'can'       => 'admin.tags.index'
+      ],
+      ['header' => 'BLOG OPTIONS'],
+      [
+         'text'  => 'Posts Lists',
+         'route' => 'admin.posts.index',
+         'icon'  => 'fas fa-fw fa-clipboard',
+         'can'   => 'admin.posts.index'
+      ],
+      [
+         'text'         => 'Create a Post',
+         'icon_color'   => 'yellow',
+         'route'        => 'admin.posts.create',
+         'icon'         => 'fas fa-fw fa-file',
+         'can'          => 'admin.posts.create'
+      ],
    ],
 
    /*
@@ -296,13 +303,13 @@ return [
    */
 
    'filters' => [
-   JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
-   JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
-   JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
-   JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
-   JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
-   JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
-   JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
+      JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
+      JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
+      JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
+      JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
+      JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
+      JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
+      JeroenNoten\LaravelAdminLte\Menu\Filters\DataFilter::class,
    ],
 
    /*
@@ -318,76 +325,76 @@ return [
    */
 
    'plugins' => [
-   'Datatables' => [
-   'active' => false,
-   'files'  => [
-   [
-   'type'     => 'js',
-   'asset'    => false,
-   'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
-   ],
-   [
-   'type'     => 'js',
-   'asset'    => false,
-   'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
-   ],
-   [
-   'type'     => 'css',
-   'asset'    => false,
-   'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
-   ],
-   ],
-   ],
-   'Select2' => [
-   'active' => false,
-   'files'  => [
-   [
-   'type'     => 'js',
-   'asset'    => false,
-   'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
-   ],
-   [
-   'type'     => 'css',
-   'asset'    => false,
-   'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
-   ],
-   ],
-   ],
-   'Chartjs' => [
-   'active' => false,
-   'files'  => [
-   [
-   'type'     => 'js',
-   'asset'    => false,
-   'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
-   ],
-   ],
-   ],
-   'Sweetalert2' => [
-   'active' => false,
-   'files'  => [
-   [
-   'type'     => 'js',
-   'asset'    => false,
-   'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
-   ],
-   ],
-   ],
-   'Pace' => [
-   'active' => false,
-   'files'  => [
-   [
-   'type'     => 'css',
-   'asset'    => false,
-   'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
-   ],
-   [
-   'type'     => 'js',
-   'asset'    => false,
-   'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
-   ],
-   ],
-   ],
+      'Datatables' => [
+         'active' => false,
+         'files'  => [
+            [
+               'type'     => 'js',
+               'asset'    => false,
+               'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+            ],
+            [
+               'type'     => 'js',
+               'asset'    => false,
+               'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+            ],
+            [
+               'type'     => 'css',
+               'asset'    => false,
+               'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
+            ],
+         ],
+      ],
+      'Select2' => [
+         'active' => false,
+         'files'  => [
+            [
+               'type'     => 'js',
+               'asset'    => false,
+               'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+            ],
+            [
+               'type'     => 'css',
+               'asset'    => false,
+               'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+            ],
+         ],
+      ],
+      'Chartjs' => [
+         'active' => false,
+         'files'  => [
+            [
+               'type'     => 'js',
+               'asset'    => false,
+               'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+            ],
+         ],
+      ],
+      'Sweetalert2' => [
+         'active' => false,
+         'files'  => [
+            [
+               'type'     => 'js',
+               'asset'    => false,
+               'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+            ],
+         ],
+      ],
+      'Pace' => [
+         'active' => false,
+         'files'  => [
+            [
+               'type'     => 'css',
+               'asset'    => false,
+               'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
+            ],
+            [
+               'type'     => 'js',
+               'asset'    => false,
+               'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+            ],
+         ],
+      ],
    ],
 
    /*

@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-   <h1>Edit Tag</h1>
+   <h1>Create new Role</h1>
 @stop
 
 @section('content')
@@ -14,9 +14,9 @@
 
       <div class="card-body">
 
-         {!! Form::model($tag, ['route' => ['admin.tags.update', $tag], 'method' => 'PUT']) !!}
+         {!! Form::open(['route' => 'admin.roles.store']) !!}
 
-            @include('admin.tags._form', ['submitButtonText' => 'Update Tag'])
+            @include('admin.roles._form', ['submitButtonText' => 'Create Role'])
 
          {!! Form::close() !!}
 
@@ -25,7 +25,3 @@
    </div>
 
 @stop
-
-@section('js')
-   @include('admin.shared._slug_creator')
-@endsection

@@ -8,6 +8,8 @@
 
 @section('content')
 
+   @include('admin.shared._session_message')
+
    <div class="card">
 
       <div class="card-body">
@@ -21,6 +23,7 @@
       </div>
 
    </div>
+   
 @stop
 
 @section('js')

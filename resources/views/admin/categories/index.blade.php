@@ -10,10 +10,13 @@
 @stop
 
 @section('content')
+
+   @include('admin.shared._session_message')
+   
    <div class="card">
 
-      @include('admin.shared._session_message')
       <div class="card-body">
+   
          <table class="table table-striped table-condensed">
             <thead>
                <tr>
@@ -46,7 +49,10 @@
 
             </tbody>
          </table>
+
       </div>
+
    </div>
+
 @stop
 
