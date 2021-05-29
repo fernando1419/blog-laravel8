@@ -54,11 +54,11 @@ class PostController extends Controller
       $post = Post::create($request->all());
 
       if ($request->file('file')) { // image exists in the request
-       $url = Storage::put('posts', $request->file('file')); // moves from temp location to public/storage/posts
+      $url = Storage::put('posts', $request->file('file')); // moves from temp location to public/storage/posts
 
-       $post->image()->create([
-          'url' => $url
-       ]);
+      $post->image()->create([
+         'url' => $url
+      ]);
       }
 
       if ($request->tags) {
@@ -119,6 +119,8 @@ class PostController extends Controller
          $post->tags()->sync($request->tags);
       }
 
+      Cache::flush();
+
       return redirect()->route('admin.posts.edit', $post)->with('info', 'Post updated succesfully');
    }
 
@@ -133,6 +135,8 @@ class PostController extends Controller
       $this->authorize('author', $post);
 
       $post->delete();
+
+      Cache::flush();
 
       return redirect()->route('admin.posts.index')->with('info', 'Post deleted successfully!');
    }
