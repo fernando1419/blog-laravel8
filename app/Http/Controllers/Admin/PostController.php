@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -53,16 +54,18 @@ class PostController extends Controller
       $post = Post::create($request->all());
 
       if ($request->file('file')) { // image exists in the request
-   $url = Storage::put('posts', $request->file('file')); // moves from temp location to public/storage/posts
+       $url = Storage::put('posts', $request->file('file')); // moves from temp location to public/storage/posts
 
-   $post->image()->create([
-   'url' => $url
-   ]);
+       $post->image()->create([
+          'url' => $url
+       ]);
       }
 
       if ($request->tags) {
          $post->tags()->attach($request->tags);
       }
+
+      Cache::flush(); // delete existing cache.
 
       return redirect()->route('admin.posts.edit', $post)->with('info', 'Post created successfully');
    }
@@ -103,12 +106,12 @@ class PostController extends Controller
             Storage::delete($post->image->url); // delete existing image
 
             $post->image->update([
-   'url' => $url
-   ]);
+               'url' => $url
+            ]);
          } else {
             $post->image()->create([
-   'url' => $url
-   ]);
+               'url' => $url
+            ]);
          }
       }
 

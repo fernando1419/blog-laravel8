@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -16,7 +17,18 @@ class PostController extends Controller
     */
    public function index()
    {
-      $posts = Post::where('status', 2)->latest('id')->paginate(8);
+      $key = 'posts';
+
+      if (request()->page) {
+         $key = 'posts' . request()->page;
+      }
+
+      if (Cache::has($key)) {
+         $posts = Cache::get($key);
+      } else {
+         $posts = Post::where('status', 2)->latest('id')->paginate(8);
+         Cache::put($key, $posts);
+      }
 
       return view('posts.index', compact('posts'));
    }
@@ -71,9 +83,9 @@ class PostController extends Controller
    public function category(Category $category)
    {
       $posts = Post::where('category_id', $category->id)
-    ->where('status', 2)
-    ->latest('id')
-    ->paginate(6);
+   ->where('status', 2)
+   ->latest('id')
+   ->paginate(6);
 
       return view('posts.category', compact('posts', 'category'));
    }

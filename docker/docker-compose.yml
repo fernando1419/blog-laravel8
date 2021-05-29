@@ -6,7 +6,8 @@ services:
     image: my-images/php73-fpm-alpine:0.1
     restart: always
     volumes:
-      - /home/docker/projects/13_blog_laravel8:/usr/share/nginx/html
+      # - /home/docker/projects/13_blog_laravel8:/usr/share/nginx/html # Docker toolbox + VirtualBox
+      - ../:/usr/share/nginx/html # Docker desktop + WSL2
     networks:
       - backEnd-network
 
@@ -15,7 +16,8 @@ services:
     env_file: .env
     image: my-images/nginx117-alpine:0.1
     volumes:
-      - /home/docker/projects/13_blog_laravel8:/usr/share/nginx/html
+      # - /home/docker/projects/13_blog_laravel8:/usr/share/nginx/html # Docker toolbox + VirtualBox
+      - ../:/usr/share/nginx/html # Docker desktop + WSL2
     ports:
       - 8908:${PORT}
     networks:
