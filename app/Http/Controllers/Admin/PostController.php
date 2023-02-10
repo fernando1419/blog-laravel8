@@ -37,8 +37,8 @@ class PostController extends Controller
     */
    public function create()
    {
-      $categories = Category::pluck('name', 'id');
       $tags       = Tag::all();
+      $categories = Category::pluck('name', 'id');
 
       return view('admin.posts.create', compact('categories', 'tags'));
    }
@@ -54,11 +54,8 @@ class PostController extends Controller
       $post = Post::create($request->all());
 
       if ($request->file('file')) { // image exists in the request
-      $url = Storage::put('posts', $request->file('file')); // moves from temp location to public/storage/posts
-
-      $post->image()->create([
-         'url' => $url
-      ]);
+         $url = Storage::put('posts', $request->file('file'));  // moves from temp location to public/storage/posts
+         $post->image()->create(['url' => $url]);
       }
 
       if ($request->tags) {

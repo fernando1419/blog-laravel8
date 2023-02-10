@@ -65,11 +65,11 @@ class PostController extends Controller
       $this->authorize('published', $post);
 
       $similarPosts = Post::where('category_id', $post->category_id)
-   ->where('status', 2)
-   ->where('id', '!=', $post->id)
-   ->latest('id')
-   ->take(4)
-   ->get();
+                          ->where('status', 2)
+                          ->where('id', '!=', $post->id)
+                          ->latest('id')
+                          ->take(4)
+                          ->get();
 
       return view('posts.show', compact('post', 'similarPosts'));
    }
@@ -83,9 +83,9 @@ class PostController extends Controller
    public function category(Category $category)
    {
       $posts = Post::where('category_id', $category->id)
-   ->where('status', 2)
-   ->latest('id')
-   ->paginate(6);
+         ->where('status', 2)
+         ->latest('id')
+         ->paginate(6);
 
       return view('posts.category', compact('posts', 'category'));
    }
